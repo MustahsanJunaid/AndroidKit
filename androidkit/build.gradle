@@ -18,7 +18,7 @@ ext {
     siteUrl = 'https://github.com/MustahsanJunaid/AndroidKit'
     gitUrl = 'https://github.com/MustahsanJunaid/AndroidKit.git'
 
-    libraryVersion = '0.1'
+    libraryVersion = '0.2'
 
     developerId = 'must7hsan'
     developerName = 'Mustahsan Junaid Basit'
