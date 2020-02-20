@@ -1,7 +1,7 @@
-package com.logician.studio.sample
+package com.logician.studio.androidkit
 
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("logician.studio.androidkit.sample", appContext.packageName)
+        assertEquals("com.example.actionmanager.test", appContext.packageName)
     }
 }

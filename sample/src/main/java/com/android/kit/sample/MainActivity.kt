@@ -2,7 +2,7 @@ package com.android.kit.sample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import logician.studio.androidkit.sample.R
+import com.logician.studio.sample.R
 
 class MainActivity : AppCompatActivity() {
 
