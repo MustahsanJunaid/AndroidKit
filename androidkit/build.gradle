@@ -2,6 +2,33 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = "AndroidKit"
+    bintrayName = "logician.studio.androidkit"
+
+    publishedGroupId = 'logician.studio.androidkit'
+    libraryName = 'androidkit'
+    artifact = 'androidkit'
+
+    libraryDescription = 'A Library that includes all the basic functionality needed by an android developer.'
+
+    siteUrl = 'https://github.com/MustahsanJunaid/AndroidKit'
+    gitUrl = 'https://github.com/MustahsanJunaid/AndroidKit.git'
+
+    libraryVersion = '0.1'
+
+    developerId = 'must7hsan'
+    developerName = 'Mustahsan Junaid Basit'
+    developerEmail = 'mustahsan.junaid@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -44,4 +71,17 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.fragment:fragment-ktx:1.2.2"
     implementation 'androidx.core:core-ktx:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha04'
+}
+repositories {
+    mavenCentral()
+}
+
+//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
+//Place it at the end of the file
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/install.gradle'
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/bintray.gradle'
 }

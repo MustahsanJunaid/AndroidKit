@@ -1,4 +1,4 @@
-package logician.studio.androidkit.sample
+package logician.studio.androidkit
 
 import org.junit.Test
 
