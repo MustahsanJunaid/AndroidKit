@@ -1,4 +1,4 @@
-package com.logician.studio.androidkit.ktx
+package com.logician.studio.androidkit.number
 
 import android.content.res.Resources
 
