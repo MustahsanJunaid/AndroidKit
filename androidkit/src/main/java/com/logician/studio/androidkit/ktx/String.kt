@@ -3,13 +3,21 @@ package com.logician.studio.androidkit.ktx
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Patterns
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 val String.isValidEmail: Boolean
     get() = TextUtils.isEmpty(this) && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
-val String.isValidPassword: Boolean
-    get() = this.trim().length>5
-
+fun String.isValidPassword(minLength: Int): Boolean {
+    if(length < minLength) return false
+    val pattern: Pattern
+    val matcher: Matcher
+    val regex = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
+    pattern = Pattern.compile(regex)
+    matcher = pattern.matcher(this)
+    return matcher.matches()
+}
 
 val String.titleCase: String
     get() {
