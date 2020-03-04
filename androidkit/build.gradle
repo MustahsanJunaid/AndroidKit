@@ -6,10 +6,10 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
-    bintrayRepo = "Android"
-    bintrayName = "com.logician.studio.androidkit"
+    bintrayRepo = "AndroidKit"
+    bintrayName = "com.logician.studio"
 
-    publishedGroupId = 'com.logician.studio.androidkit'
+    publishedGroupId = 'com.logician.studio'
     libraryName = 'androidkit'
     artifact = 'androidkit'
 
