@@ -1,4 +1,4 @@
-package com.mustahsan.androidkit.sample
+package com.mustahsan.androidkit
 
 import org.junit.Test
 

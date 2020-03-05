@@ -7,9 +7,9 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
     bintrayRepo = "AndroidKit"
-    bintrayName = "com.logician.studio"
+    bintrayName = "com.mustahsan"
 
-    publishedGroupId = 'com.logician.studio'
+    publishedGroupId = 'com.mustahsan'
     libraryName = 'androidkit'
     artifact = 'androidkit'
 
