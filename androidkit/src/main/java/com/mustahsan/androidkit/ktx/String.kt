@@ -9,11 +9,28 @@ import java.util.regex.Pattern
 val String.isValidEmail: Boolean
     get() = !TextUtils.isEmpty(this) && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
-fun String.isValidPassword(minLength: Int): Boolean {
-    if(length < minLength) return false
+enum class PasswordStrength {
+    LIGHT, MEDIUM, STRONG
+}
+
+fun String.isValidPassword(
+    strength: PasswordStrength = PasswordStrength.MEDIUM,
+    minLength: Int = 8
+): Boolean {
+    if (length < minLength) return false
     val pattern: Pattern
     val matcher: Matcher
-    val regex = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
+    val regex = when (strength) {
+        PasswordStrength.STRONG -> {
+            "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
+        }
+        PasswordStrength.MEDIUM -> {
+            "^(?=.*[0-9])(?=.*[A-Z]).{4,}$"
+        }
+        else -> {
+            "^(?=.*[0-9])(?=.*[a-z]).{4,}$"
+        }
+    }
     pattern = Pattern.compile(regex)
     matcher = pattern.matcher(this)
     return matcher.matches()
@@ -34,7 +51,6 @@ val String.titleCase: String
             } else {
                 c
             }
-
             titleCase.append(character)
         }
         return titleCase.toString()

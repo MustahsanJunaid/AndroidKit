@@ -152,6 +152,6 @@ fun View.adjust(
     }
 }
 
-fun View.blockTouch(){
-    setOnTouchListener { v, event -> true}
+fun View.blockTouch(block:Boolean = true){
+    setOnTouchListener { _, _ -> block}
 }

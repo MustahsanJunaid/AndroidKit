@@ -4,10 +4,13 @@ import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 
 
 fun AppCompatActivity.replaceFragment(containerId: Int, fragment: Fragment) {
-    supportFragmentManager.beginTransaction().replace(containerId, fragment).commit()
+    supportFragmentManager.commit(allowStateLoss = false){
+        replace(containerId, fragment)
+    }
 }
 
 val Activity.appName: String

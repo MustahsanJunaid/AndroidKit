@@ -1,4 +1,4 @@
-package com.mustahsan.androidkit.ktx
+package com.mustahsan.androidkit.collection
 
 fun <T> MutableList<T>.mapReplace(transform: (T) -> T) {
     for (i in this.indices) {
