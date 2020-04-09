@@ -10,6 +10,7 @@ import android.provider.Settings
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
+import com.mustahsan.androidkit.util.MathUtils
 import java.io.File
 
 
@@ -76,7 +77,7 @@ val Context.appName: String
         )
     }
 
-fun Context.openSettings(){
+fun Context.openSettings() {
     val intent =
         Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$packageName")
@@ -85,6 +86,17 @@ fun Context.openSettings(){
 
 val Context.screenWidth: Int
     get() = resources.displayMetrics.widthPixels
+
+val Context.screenHeight: Int
+    get() = resources.displayMetrics.heightPixels
+
+val Context.screenRatio: Pair<Float, Float>
+    get() {
+        val w = screenWidth
+        val h = screenHeight
+        return MathUtils.ratio(w, h)
+    }
+
 
 fun Context.getDrawableResource(name: String): Int {
     return resources.getIdentifier(name, "drawable", packageName)

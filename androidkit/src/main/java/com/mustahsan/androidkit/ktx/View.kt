@@ -9,6 +9,7 @@ import android.view.View
 import android.transition.TransitionManager
 import android.view.MenuItem
 import androidx.appcompat.widget.PopupMenu
+import com.mustahsan.androidkit.util.MathUtils
 
 
 fun View.setDimensionRatio(ratio: String, animate: Boolean = false) {
@@ -32,7 +33,7 @@ fun View.setDimensionRatio(ratio: String, animate: Boolean = false) {
     }
 }
 
-fun View.setMarginConstraint(margin: Int, anchor:Int, animate: Boolean = false) {
+fun View.setMarginConstraint(margin: Int, anchor: Int, animate: Boolean = false) {
     if (parent is ConstraintLayout) {
         val constraintLayout = parent as ConstraintLayout
 
@@ -118,7 +119,7 @@ fun View.updateSize(w: Int, h: Int, animate: Boolean = false) {
     }
 }
 
-fun View.popupMenu(menuId:Int, callback:(MenuItem)->Boolean){
+fun View.popupMenu(menuId: Int, callback: (MenuItem) -> Boolean) {
     val popup = PopupMenu(context, this)
     //Inflating the Popup using xml file
     popup.menuInflater.inflate(menuId, popup.menu)
@@ -127,11 +128,16 @@ fun View.popupMenu(menuId:Int, callback:(MenuItem)->Boolean){
     popup.show()//showing popup menu
 }
 
-fun View.setMargin(left:Int, top:Int, right:Int, bottom:Int){
+fun View.setMargin(left: Int, top: Int, right: Int, bottom: Int) {
     layoutParams = (layoutParams as? ViewGroup.MarginLayoutParams)?.apply {
         setMargins(left, top, right, bottom)
     }
 }
+
+val View.sizeRatio: Pair<Float, Float>
+    get() {
+        return MathUtils.ratio(width, height)
+    }
 
 fun View.adjust(
     parent: ViewGroup,
@@ -145,13 +151,13 @@ fun View.adjust(
     } else {
         parent.measuredWidth
     }
-    val size = (parentSize / span) - ((itemSpacing*span)/1.5)
+    val size = (parentSize / span) - ((itemSpacing * span) / 1.5)
     layoutParams.apply {
         width = size.toInt()
         height = (size * ratio).toInt()
     }
 }
 
-fun View.blockTouch(block:Boolean = true){
-    setOnTouchListener { _, _ -> block}
+fun View.blockTouch(block: Boolean = true) {
+    setOnTouchListener { _, _ -> block }
 }
