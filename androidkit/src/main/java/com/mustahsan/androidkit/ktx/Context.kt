@@ -1,6 +1,7 @@
 package com.mustahsan.androidkit.ktx
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -14,10 +15,25 @@ import com.mustahsan.androidkit.util.MathUtils
 import java.io.File
 
 
-fun Context.openUrl(url: String) {
-    val intent = Intent(Intent.ACTION_VIEW)
-    intent.data = url.toUri()
+fun Context.openUri(uri: String, action: String = Intent.ACTION_VIEW) {
+    val intent = Intent(action)
+    intent.data = uri.toUri()
     startActivity(intent)
+}
+
+fun Context.openStore() {
+    return try {
+        startActivity(
+            Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
+        )
+    } catch (anfe: ActivityNotFoundException) {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+            )
+        )
+    }
 }
 
 fun Context.startActivity(mClass: Class<*>) {

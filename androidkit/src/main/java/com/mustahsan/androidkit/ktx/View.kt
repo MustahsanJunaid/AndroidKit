@@ -50,40 +50,40 @@ fun View.setMarginConstraint(margin: Int, anchor: Int, animate: Boolean = false)
     }
 }
 
-fun View.translateX(newX: Float) {
+fun View.translateX(newX: Float, duration: Long = 700) {
     val heightAnim = ValueAnimator.ofInt(x.toInt(), newX.toInt())
     heightAnim.addUpdateListener { valueAnimator ->
         val value = valueAnimator.animatedValue as Int
         x = value.toFloat()
     }
-    heightAnim.duration = 700
+    heightAnim.duration = duration
     heightAnim.start()
 }
 
 
-fun View.translateY(newY: Float) {
+fun View.translateY(newY: Float, duration: Long = 700) {
     val heightAnim = ValueAnimator.ofInt(y.toInt(), newY.toInt())
     heightAnim.addUpdateListener { valueAnimator ->
         val value = valueAnimator.animatedValue as Int
         y = value.toFloat()
     }
-    heightAnim.duration = 700
+    heightAnim.duration = duration
     heightAnim.start()
 }
 
-fun View.updateWidth(w: Float, animate: Boolean = false) {
-    updateSize(w.toInt(), measuredHeight, animate)
+fun View.updateWidth(w: Float, duration: Long = 700, animate: Boolean = false) {
+    updateSize(w.toInt(), measuredHeight, duration, animate)
 }
 
-fun View.updateHeight(h: Float, animate: Boolean = false) {
-    updateSize(measuredWidth, h.toInt(), animate)
+fun View.updateHeight(h: Float, duration: Long = 700, animate: Boolean = false) {
+    updateSize(measuredWidth, h.toInt(), duration, animate)
 }
 
-fun View.updateSize(w: Float, h: Float, animate: Boolean = false) {
-    updateSize(w.toInt(), h.toInt(), animate)
+fun View.updateSize(w: Float, h: Float, duration: Long = 700, animate: Boolean = false) {
+    updateSize(w.toInt(), h.toInt(), duration, animate)
 }
 
-fun View.updateSize(w: Int, h: Int, animate: Boolean = false) {
+fun View.updateSize(w: Int, h: Int, duration: Long = 700, animate: Boolean = false) {
     if (animate) {
         val heightAnim = ValueAnimator.ofInt(measuredHeight, h)
         heightAnim.addUpdateListener { valueAnimator ->
@@ -103,8 +103,8 @@ fun View.updateSize(w: Int, h: Int, animate: Boolean = false) {
             }
         }
 
-        heightAnim.duration = 700
-        widthAnim.duration = 700
+        heightAnim.duration = duration
+        widthAnim.duration = duration
 
         heightAnim.start()
         widthAnim.start()

@@ -18,6 +18,46 @@ object DatePattern {
     const val TIME_LONG24 = "hh:mm:ss"
 }
 
+fun Long.shortTime(locale: Locale = Locale.US): String {
+    return Date(this).shortTime(locale)
+}
+
+fun Long.shortTime24(locale: Locale = Locale.US): String {
+    return Date(this).shortTime24(locale)
+}
+
+fun Long.longTime(locale: Locale = Locale.US): String {
+    return Date(this).longTime(locale)
+}
+
+fun Long.longTime24(locale: Locale = Locale.US): String {
+    return Date(this).longTime24(locale)
+}
+
+fun Long.fullTime(locale: Locale = Locale.US): String {
+    return Date(this).fullTime(locale)
+}
+
+fun Long.shortDate(locale: Locale = Locale.US): String {
+    return Date(this).shortDate(locale)
+}
+
+fun Long.mediumDate(locale: Locale = Locale.US): String {
+    return Date(this).mediumDate(locale)
+}
+
+fun Long.longDate(locale: Locale = Locale.US): String {
+    return Date(this).longDate(locale)
+}
+
+fun Long.fullDateTime(locale: Locale = Locale.US): String {
+    return Date(this).fullDateTime(locale)
+}
+
+fun Long.string(format: String, locale: Locale = Locale.US): String {
+    return Date(this).string(format, locale)
+}
+
 fun Date.shortTime(locale: Locale = Locale.US): String {
     val simpleDateFormat = DateFormat.getTimeInstance(DateFormat.SHORT, locale)
     return simpleDateFormat.format(this)

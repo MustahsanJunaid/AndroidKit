@@ -10,11 +10,23 @@ import com.mustahsan.androidkit.R
 
 object FeedbackUtils {
 
-    fun startFeedbackEmail(context: Context, email: String) {
+    fun supportEmail(
+        context: Context,
+        subject: String = emailSubject(context),
+        email: String
+    ) {
+        supportEmail(context, subject, arrayOf(email))
+    }
+
+    fun supportEmail(
+        context: Context,
+        subject: String = emailSubject(context),
+        emails: Array<String>
+    ) {
         val intent = Intent(ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
-            putExtra(EXTRA_SUBJECT, emailSubject(context))
-            putExtra(EXTRA_EMAIL, arrayOf(email))
+            putExtra(EXTRA_SUBJECT, subject)
+            putExtra(EXTRA_EMAIL, emails)
             putExtra(EXTRA_TEXT, "\n\nDetail Information:\n\n" + getDeviceInfo(context))
         }
         context.startActivity(createChooser(intent, "Send E-Mail"))
@@ -49,7 +61,7 @@ object FeedbackUtils {
         return appName
     }
 
-    private fun getDeviceInfo(context: Context): String {
+    fun getDeviceInfo(context: Context): String {
         val sdk = Build.VERSION.SDK_INT // API Level
         val model = Build.MODEL // Model
         val brand = Build.BRAND // Product
