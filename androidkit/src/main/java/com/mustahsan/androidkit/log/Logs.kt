@@ -5,67 +5,57 @@ import com.mustahsan.androidkit.BuildConfig
 import java.lang.Exception
 
 fun Any.logV(log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.v(this::class.java.simpleName, log)
-    }
+    logV(this::class.java.simpleName, log)
 }
 
 fun Any.logE(log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.e(this::class.java.simpleName, log)
-    }
-}
-
-fun Any.logE(log: String, e: Exception?) {
-    if (BuildConfig.DEBUG) {
-        Log.e(this::class.java.simpleName, log, e)
-    }
+    logE(this::class.java.simpleName, log)
 }
 
 fun Any.logD(log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.d(this::class.java.simpleName, log)
-    }
+    logD(this::class.java.simpleName, log)
 }
 
 fun Any.logI(log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.i(this::class.java.simpleName, log)
-    }
+    logI(this::class.java.simpleName, log)
+}
+
+fun Any.logWtf(log: String) {
+    logWtf(this::class.java.simpleName, log)
 }
 
 fun Any.logW(log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.w(this::class.java.simpleName, log)
-    }
+    Log.w(this::class.java.simpleName, log)
 }
 
 fun Any.logV(tag: String, log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.v(tag, log)
-    }
+    Log.v(tag, log)
+}
+
+fun Any.logE(log: String, e: Exception?) {
+    logE(this::class.java.simpleName, log, e)
 }
 
 fun Any.logE(tag: String, log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.e(tag, log)
-    }
+    Log.e(tag, log)
+}
+
+fun Any.logE(tag: String, log: String, e: Exception?) {
+    Log.e(tag, log, e)
 }
 
 fun Any.logD(tag: String, log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.d(tag, log)
-    }
+    Log.d(tag, log)
 }
 
 fun Any.logI(tag: String, log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.i(tag, log)
-    }
+    Log.i(tag, log)
 }
 
 fun Any.logW(tag: String, log: String) {
-    if (BuildConfig.DEBUG) {
-        Log.w(tag, log)
-    }
+    Log.w(tag, log)
+}
+
+fun Any.logWtf(tag: String, log: String) {
+    Log.wtf(tag, log)
 }
