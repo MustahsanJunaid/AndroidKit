@@ -112,16 +112,3 @@ val Context.screenRatio: Pair<Float, Float>
         val h = screenHeight
         return MathUtils.ratio(w, h)
     }
-
-
-fun Context.getDrawableResource(name: String): Int {
-    return resources.getIdentifier(name, "drawable", packageName)
-}
-
-fun Context.getColorResource(name: String): Int {
-    return resources.getIdentifier(name, "color", packageName)
-}
-
-fun Context.getColor(name: String): Int {
-    return ContextCompat.getColor(this, getColorResource(name))
-}
