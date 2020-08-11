@@ -12,7 +12,11 @@ import com.mustahsan.androidkit.alert.toastShort
 
 @SuppressLint("MissingPermission")
 fun Context.vibrateTick() {
-    if (PermissionChecker.checkSelfPermission(this, Manifest.permission.VIBRATE) == PermissionChecker.PERMISSION_GRANTED) {
+    if (PermissionChecker.checkSelfPermission(
+            this,
+            Manifest.permission.VIBRATE
+        ) == PermissionChecker.PERMISSION_GRANTED
+    ) {
         val vibrator = ContextCompat.getSystemService(this, Vibrator::class.java)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val effect = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -24,7 +28,26 @@ fun Context.vibrateTick() {
         } else {
             vibrator?.vibrate(50)
         }
-    }else{
+    } else {
+        toastShort("VIBRATE missing in Manifest")
+    }
+}
+
+@SuppressLint("MissingPermission")
+fun Context.vibrate(pattern: LongArray = longArrayOf(150,100,150,100), repeat: Int = 1) {
+    if (PermissionChecker.checkSelfPermission(
+            this,
+            Manifest.permission.VIBRATE
+        ) == PermissionChecker.PERMISSION_GRANTED
+    ) {
+        val vibrator = ContextCompat.getSystemService(this, Vibrator::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val effect = VibrationEffect.createWaveform(pattern, repeat)
+            vibrator?.vibrate(effect)
+        } else {
+            vibrator?.vibrate(pattern, repeat)
+        }
+    } else {
         toastShort("VIBRATE missing in Manifest")
     }
 }
