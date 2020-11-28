@@ -15,10 +15,16 @@ abstract class DataBoundRecyclerAdapter<T, V : ViewDataBinding>() :
 
     var data: MutableList<T> = mutableListOf()
         set(value) {
-            field.clear()
-            field.addAll(value)
+            field = value
             notifyDataSetChanged()
         }
+
+    fun updateItem(position: Int, item: T) {
+        if (position > 0 && position < data.size) {
+            data[position] = item
+            notifyDataSetChanged()
+        }
+    }
 
     fun appendData(data: List<T>) {
         this.data.addAll(data)
@@ -33,11 +39,21 @@ abstract class DataBoundRecyclerAdapter<T, V : ViewDataBinding>() :
     protected var recyclerView: RecyclerView? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder<V> {
-        val binding = createBinding(parent)
+        var binding = createBinding(parent)
+        if(binding == null){
+            binding = createBinding(parent, viewType)
+        }
+        if(binding == null) throw InstantiationException("Please override createBinding(parent: ViewGroup) OR createBinding(parent: ViewGroup, viewType: Int)")
         return DataBoundViewHolder(binding)
     }
 
-    protected abstract fun createBinding(parent: ViewGroup): V
+    protected fun createBinding(parent: ViewGroup): V? {
+        return null
+    }
+
+    protected fun createBinding(parent: ViewGroup, viewType: Int): V? {
+        return null
+    }
 
     override fun getItemCount() = data.size
 
