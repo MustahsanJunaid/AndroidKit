@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class DataBoundRecyclerAdapter<T, V : ViewDataBinding>() :
     RecyclerView.Adapter<DataBoundViewHolder<V>>() {
 
-    var data: MutableList<T> = mutableListOf()
+    open var data: MutableList<T> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -47,11 +47,11 @@ abstract class DataBoundRecyclerAdapter<T, V : ViewDataBinding>() :
         return DataBoundViewHolder(binding)
     }
 
-    protected fun createBinding(parent: ViewGroup): V? {
+    protected open fun createBinding(parent: ViewGroup): V? {
         return null
     }
 
-    protected fun createBinding(parent: ViewGroup, viewType: Int): V? {
+    protected open fun createBinding(parent: ViewGroup, viewType: Int): V? {
         return null
     }
 
