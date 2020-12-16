@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="kit_activity_hor_margin">16dp</dimen>
+    <dimen name="kit_activity_ver_margin">16dp</dimen>
+
+    <dimen name="kit_button_height">46dp</dimen>
+    <dimen name="kit_button_radius_full">23dp</dimen>
+
+    <dimen name="kit_radius_small_x">2dp</dimen>
+    <dimen name="kit_radius_small">4dp</dimen>
+    <dimen name="kit_radius_normal">6dp</dimen>
+    <dimen name="kit_radius_medium">8dp</dimen>
+    <dimen name="kit_radius_large">12dp</dimen>
+    <dimen name="kit_radius_large_x">16dp</dimen>
+</resources>

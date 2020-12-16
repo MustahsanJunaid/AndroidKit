@@ -54,7 +54,7 @@ fun Long.fullDateTime(locale: Locale = Locale.US): String {
     return Date(this).fullDateTime(locale)
 }
 
-fun Long.string(format: String, locale: Locale = Locale.US): String {
+fun Long.dateString(format: String, locale: Locale = Locale.US): String {
     return Date(this).string(format, locale)
 }
 

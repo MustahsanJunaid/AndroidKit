@@ -1,2 +1,2 @@
-include ':sample', ':androidkit'
+include ':sample', ':kit'
 rootProject.name='AndroidKit'
