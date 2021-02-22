@@ -19,7 +19,7 @@ class VerticalSpacingDecoration(
         space: Float,
         span: Int = 1,
         edge: Boolean = true
-    ) : this(span, space.roundToInt(), edge)
+    ) : this(space.roundToInt(), span, edge)
 
     constructor(
         context: Context,
