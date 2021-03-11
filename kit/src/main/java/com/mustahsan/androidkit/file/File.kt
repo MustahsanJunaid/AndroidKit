@@ -11,13 +11,21 @@ fun String.toFile(): File? {
     return if (isBlank()) null else File(this)
 }
 
-fun String.createDirectoriesIfNeeded(): File? {
-    val file = toFile()
-    val exits = file != null && if (file.exists()) file.isDirectory else file.mkdirs()
-    return if (exits) file else null
+fun String.createDirectoriesIfNeeded() = toFile()?.createDirectoriesIfNeeded()
+
+fun File.createDirectoriesIfNeeded(): File? {
+    return if (isDirectoryExists) null else this
 }
 
+val String.isDirectoryExists get() = toFile()?.isDirectoryExists ?: false
+
 val File.isDirectoryExists get() = if (exists()) isDirectory else mkdirs()
+
+fun File.createDirectory(dir: String): File? {
+    val file = File(this.path + File.separator + dir)
+    return file.createDirectoriesIfNeeded()
+}
+
 
 fun File.createFile(name: String, deleteExisting: Boolean = false): File {
     val file = File(this.path + File.separator + name)
