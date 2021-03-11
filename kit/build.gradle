@@ -18,7 +18,7 @@ ext {
     siteUrl = 'https://github.com/MustahsanJunaid/AndroidKit'
     gitUrl = 'https://github.com/MustahsanJunaid/AndroidKit.git'
 
-    libraryVersion = '1.1.6'
+    libraryVersion = '1.1.7'
 
     developerId = 'must7hsan'
     developerName = 'Mustahsan Junaid Basit'
@@ -75,7 +75,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.3.0"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-alpha04'
 }

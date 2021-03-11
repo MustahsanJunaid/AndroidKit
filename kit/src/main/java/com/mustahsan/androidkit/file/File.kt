@@ -11,48 +11,41 @@ fun String.toFile(): File? {
     return if (isBlank()) null else File(this)
 }
 
-fun String.directory(): File? {
+fun String.createDirectoriesIfNeeded(): File? {
     val file = toFile()
     val exits = file != null && if (file.exists()) file.isDirectory else file.mkdirs()
     return if (exits) file else null
 }
 
-fun File.directory() = if (exists()) isDirectory else mkdirs()
+val File.isDirectoryExists get() = if (exists()) isDirectory else mkdirs()
 
-fun File.directory(dir: String): File {
-    val file = File(this.path + File.separator + dir)
-    file.directory()
-    return file
-}
-
-fun File.file(fileName: String, deleteExisting: Boolean = false): File {
-    val file = File(this.path + File.separator + fileName)
+fun File.createFile(name: String, deleteExisting: Boolean = false): File {
+    val file = File(this.path + File.separator + name)
     if (deleteExisting) {
         if (file.exists()) {
             file.delete()
         }
-        file.createNewFile()
     }
+    file.createNewFile()
     return file
 }
 
 val Context.appDirectory: File?
     get() {
-        val path = Environment.getExternalStorageDirectory().toString() + File.separator + appName
-        return path.directory()
+        return getExternalFilesDir(appName)
     }
 
 val Context.privateDirectory: File?
     get() {
         val path = filesDir.toString() + File.separator + appName
-        return path.directory()
+        return path.createDirectoriesIfNeeded()
     }
 
 val Context.picturesDirectory: File?
     get() {
         val path =
             getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString() + File.separator + appName
-        return path.directory()
+        return path.createDirectoriesIfNeeded()
     }
 
 val Context.cacheDirectory: File?
@@ -62,30 +55,26 @@ val Context.cacheDirectory: File?
 
 fun Context.folderInAppDir(folder: String): File? {
     if (appDirectory == null) return null
-    val appDirPath = appDirectory!!.path
-    val path = appDirPath + File.separator + folder
-    return path.directory()
+    val path = appDirectory!!.path + File.separator + folder
+    return path.createDirectoriesIfNeeded()
 }
 
 fun Context.folderInPicturesDir(folder: String): File? {
     if (picturesDirectory == null) return null
-    val picturesDirectoryPath = picturesDirectory!!.path
-    val path = picturesDirectoryPath + File.separator + folder
-    return path.directory()
+    val path = picturesDirectory!!.path + File.separator + folder
+    return path.createDirectoriesIfNeeded()
 }
 
 fun Context.folderInCacheDir(folder: String): File? {
     if (cacheDirectory == null) return null
-    val picturesDirectoryPath = cacheDirectory!!.path
-    val path = picturesDirectoryPath + File.separator + folder
-    return path.directory()
+    val path = cacheDirectory!!.path + File.separator + folder
+    return path.createDirectoriesIfNeeded()
 }
 
 fun Context.folderInPrivateDir(folder: String): File? {
     if (privateDirectory == null) return null
-    val appDirPath = privateDirectory!!.path
-    val path = appDirPath + File.separator + folder
-    return path.directory()
+    val path = privateDirectory!!.path + File.separator + folder
+    return path.createDirectoriesIfNeeded()
 }
 
 fun File.copy(dest: File) = FileUtils.copyOrMoveFile(this, dest, false)
