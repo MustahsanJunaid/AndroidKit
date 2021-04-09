@@ -1,47 +1,23 @@
-package com.mustahsan.androidkit.recyclerview
+package com.android.kit.ui.recyclerview
 
-import android.content.Context
-import android.graphics.Rect
 import android.view.View
-import androidx.annotation.DimenRes
-import androidx.annotation.IdRes
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import kotlin.math.roundToInt
 
-class VerticalSpacingDecoration(
-    private val spacing: Int,
-    private val spanCount: Int = 1,
-    private val includeEdge: Boolean = true
-) : RecyclerView.ItemDecoration() {
-
-    constructor(
-        space: Float,
-        span: Int = 1,
-        edge: Boolean = true
-    ) : this(space.roundToInt(), span, edge)
-
-    constructor(
-        context: Context,
-        @DimenRes spaceDimen: Int,
-        span: Int = 1,
-        edge: Boolean = true
-    ) : this(context.resources.getDimension(spaceDimen), span, edge)
-
-    override fun getItemOffsets(
-        outRect: Rect,
+object RecyclerViewUtil {
+    fun calculateVerticalSpace(
+        parent: RecyclerView,
         view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        val spacing = calculateVerticalSpace(parent, view)
-        outRect.set(spacing[0], spacing[1], spacing[2], spacing[3])
-    }
+        includeEdge: Boolean,
+        spacing: Int
+    ):Array<Int> {
+        val spanCount = when (parent.layoutManager) {
+            is GridLayoutManager -> (parent.layoutManager as GridLayoutManager).spanCount
+            is StaggeredGridLayoutManager -> (parent.layoutManager as StaggeredGridLayoutManager).spanCount
+            else -> 1
+        }
 
-    private fun calculateVerticalSpace(
-        parent: RecyclerView,
-        view: View
-    ): Array<Int> {
         val position = parent.getChildAdapterPosition(view) // item position
         val column = if (parent.layoutManager is StaggeredGridLayoutManager) {
             (view.layoutParams as StaggeredGridLayoutManager.LayoutParams).spanIndex

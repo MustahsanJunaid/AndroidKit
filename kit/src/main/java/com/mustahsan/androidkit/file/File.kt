@@ -14,7 +14,7 @@ fun String.toFile(): File? {
 fun String.createDirectoriesIfNeeded() = toFile()?.createDirectoriesIfNeeded()
 
 fun File.createDirectoriesIfNeeded(): File? {
-    return if (isDirectoryExists) null else this
+    return if (isDirectoryExists) this else null
 }
 
 val String.isDirectoryExists get() = toFile()?.isDirectoryExists ?: false

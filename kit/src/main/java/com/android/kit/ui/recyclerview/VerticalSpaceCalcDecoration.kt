@@ -1,9 +1,9 @@
-package com.mustahsan.androidkit.recyclerview
+package com.android.kit.ui.recyclerview
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.mustahsan.androidkit.recyclerview.RecyclerViewUtil.calculateVerticalSpace
+import com.android.kit.ui.recyclerview.RecyclerViewUtil.calculateVerticalSpace
 
 class VerticalSpaceCalcDecoration(
     private val spacing: Int,

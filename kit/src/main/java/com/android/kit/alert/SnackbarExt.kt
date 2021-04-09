@@ -1,4 +1,4 @@
-package com.mustahsan.androidkit.alert
+package com.android.kit.alert
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar

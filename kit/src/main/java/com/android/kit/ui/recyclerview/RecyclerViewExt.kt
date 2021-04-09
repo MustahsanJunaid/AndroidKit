@@ -1,15 +1,20 @@
-package com.mustahsan.androidkit.recyclerview
+package com.android.kit.ui.recyclerview
 
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import java.lang.NullPointerException
 
-fun RecyclerView.reachedEnd(delta: Int, reached: () -> Unit) {
+fun RecyclerView.reachedEnd(delta: Int = 1, reached: () -> Unit) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            if (!canScrollVertically(delta)) {
+            val itemCount = recyclerView.adapter?.itemCount ?: 0
+            val lastVisibleItemPosition =
+                (recyclerView.layoutManager as? LinearLayoutManager)?.findLastVisibleItemPosition()
+
+            if (lastVisibleItemPosition == itemCount - delta) {
                 reached()
             }
         }
@@ -23,7 +28,7 @@ enum class Direction {
     LEFT
 }
 
-fun RecyclerView.itemSpacing(spacing: Int, includeEdges: Boolean = true) {
+fun RecyclerView.setItemSpacing(spacing: Int, includeEdges: Boolean = true) {
     if (layoutManager == null) {
         throw NullPointerException("set LayoutManager before item spacing")
     }

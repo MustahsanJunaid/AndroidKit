@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The Android Open Source Project
+ * Copyright (C) 2015 Paul Burke
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package com.mustahsan.androidkit.recyclerview
+package com.android.kit.ui.recyclerview.helper;
 
-import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * A generic ViewHolder that works with a [ViewDataBinding].
- * @param <T> The type of the ViewDataBinding.
-</T> */
-class DataBoundViewHolder<out T : ViewDataBinding> constructor(val binding: T) :
-    RecyclerView.ViewHolder(binding.root)
+ * Listener for manual initiation of a drag.
+ */
+public interface OnStartDragListener {
+
+    /**
+     * Called when a view is requesting a start of a drag.
+     *
+     * @param viewHolder The holder of the view to drag.
+     */
+    void onStartDrag(RecyclerView.ViewHolder viewHolder);
+
+}

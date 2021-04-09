@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mustahsan.androidkit.recyclerview.helper;
+package com.android.kit.ui.recyclerview.helper;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;

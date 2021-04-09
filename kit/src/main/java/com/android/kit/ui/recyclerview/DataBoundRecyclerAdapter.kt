@@ -1,4 +1,4 @@
-package com.mustahsan.androidkit.recyclerview
+package com.android.kit.ui.recyclerview
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding

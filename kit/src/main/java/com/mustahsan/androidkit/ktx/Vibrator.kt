@@ -8,7 +8,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
-import com.mustahsan.androidkit.alert.toastShort
+import com.android.kit.alert.toastShort
 
 @SuppressLint("MissingPermission")
 fun Context.vibrateTick() {
