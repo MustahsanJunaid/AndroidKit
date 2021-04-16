@@ -4,18 +4,24 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.android.kit.contract.ResultContractor
-import com.android.kit.listener.AnyEventListener
+import com.android.kit.listener.EventListener
+import com.android.kit.preference.PreferenceKit
+import com.android.kit.ui.utility.FilterHelper
 import com.mustahsan.androidkit.ktx.appName
 
-abstract class KitActivity<Binding : ViewDataBinding> : AppCompatActivity() {
+abstract class ActivityKit<Binding : ViewDataBinding> : AppCompatActivity() {
 
     private val contractForResult = ResultContractor.registerActivityForResult(this)
     private val contractForPermission = ResultContractor.registerForActivityResult(
@@ -33,17 +39,17 @@ abstract class KitActivity<Binding : ViewDataBinding> : AppCompatActivity() {
 
     abstract fun onCreateBinding(): Binding
 
-    private var backClickListener: AnyEventListener? = null
+    private var backClickListener: EventListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         _binding = onCreateBinding()
-//        val mode = PreferenceUtils.nightMode
-//        AppCompatDelegate.setDefaultNightMode(mode.mode)
+        val mode = PreferenceKit.nightMode
+        AppCompatDelegate.setDefaultNightMode(mode.mode)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
 
-    fun enableBackButton(backClickListener: AnyEventListener? = null) {
+    fun enableBackButton(backClickListener: EventListener? = null) {
         this.backClickListener = backClickListener
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -67,6 +73,19 @@ abstract class KitActivity<Binding : ViewDataBinding> : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    protected fun setMenuIconsColor(menu: Menu, @ColorRes color: Int) {
+        for (i in 0 until menu.size()) {
+            menu.getItem(i).icon?.let { drawable ->
+                drawable.mutate()
+                FilterHelper.setColorFilter(
+                    drawable,
+                    ContextCompat.getColor(this, color),
+                    FilterHelper.Mode.SRC_ATOP
+                )
+            }
+        }
     }
 
     override fun onDestroy() {

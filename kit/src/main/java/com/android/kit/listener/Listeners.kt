@@ -3,7 +3,7 @@ package com.android.kit.listener
 import android.view.View
 
 
-typealias AnyEventListener = () -> Unit
+typealias EventListener = () -> Unit
 
 typealias SimpleRecyclerItemClickListener<T> = (item: T) -> Unit
 

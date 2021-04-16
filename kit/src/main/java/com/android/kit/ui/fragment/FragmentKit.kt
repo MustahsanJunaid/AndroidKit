@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.android.kit.contract.ResultContractor
 
-abstract class KitFragment<Binding : ViewDataBinding> : Fragment() {
+abstract class FragmentKit<Binding : ViewDataBinding> : Fragment() {
 
     private var _binding: Binding? = null
     protected val binding: Binding
