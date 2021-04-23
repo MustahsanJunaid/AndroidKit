@@ -5,9 +5,11 @@ import android.graphics.BlendModeColorFilter
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Build
+import androidx.annotation.RequiresApi
 
 object FilterHelper {
-    private fun getBlendMode(mode: Mode): BlendMode {
+    @RequiresApi(Build.VERSION_CODES.Q)
+    internal fun getBlendMode(mode: Mode): BlendMode {
         return when (mode) {
             Mode.CLEAR -> BlendMode.CLEAR
             Mode.SRC -> BlendMode.SRC
@@ -28,10 +30,9 @@ object FilterHelper {
             Mode.ADD -> BlendMode.PLUS
             Mode.OVERLAY -> BlendMode.OVERLAY
         }
-        return BlendMode.SCREEN
     }
 
-    private fun getPorterDuffMode(mode: Mode): PorterDuff.Mode {
+    internal fun getPorterDuffMode(mode: Mode): PorterDuff.Mode {
         return when (mode) {
             Mode.CLEAR -> PorterDuff.Mode.CLEAR
             Mode.SRC -> PorterDuff.Mode.SRC
@@ -52,7 +53,6 @@ object FilterHelper {
             Mode.ADD -> PorterDuff.Mode.ADD
             Mode.OVERLAY -> PorterDuff.Mode.OVERLAY
         }
-        return PorterDuff.Mode.SCREEN
     }
 
     fun setColorFilter(background: Drawable, color: Int, mode: Mode) {

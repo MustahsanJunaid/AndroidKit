@@ -1,7 +1,5 @@
 package com.android.kit.ui.activity
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -17,9 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.android.kit.contract.ResultContractor
 import com.android.kit.listener.EventListener
+import com.android.kit.model.NightMode
 import com.android.kit.preference.PreferenceKit
 import com.android.kit.ui.utility.FilterHelper
-import com.mustahsan.androidkit.ktx.appName
 
 abstract class ActivityKit<Binding : ViewDataBinding> : AppCompatActivity() {
 
@@ -101,8 +99,6 @@ abstract class ActivityKit<Binding : ViewDataBinding> : AppCompatActivity() {
     protected fun finish(resultCode: Int, data: Intent) {
         setResult(resultCode, data)
         finish()
-
-        supportFragmentManager
     }
 
     protected fun launchForResult(intent: Intent, result: (result: ActivityResult) -> Unit) {
@@ -120,17 +116,19 @@ abstract class ActivityKit<Binding : ViewDataBinding> : AppCompatActivity() {
         contractForMultiplePermissions.launch(permissions) { result(it) }
     }
 
-    fun replaceFragment(containerId: Int, fragment: Fragment) {
-        supportFragmentManager.commit(allowStateLoss = false) {
+    fun replaceFragment(containerId: Int, fragment: Fragment, allowStateLoss: Boolean = false) {
+        supportFragmentManager.commit(allowStateLoss) {
             replace(containerId, fragment)
         }
     }
 
-    fun restert() {
+    fun restart() {
         finish()
         startActivity(intent)
     }
-}
 
-val Activity.appName: String
-    get() = (this as Context).appName
+    protected fun setNightMode(nightMode: NightMode) {
+        PreferenceKit.nightMode = nightMode
+        AppCompatDelegate.setDefaultNightMode(nightMode.mode)
+    }
+}

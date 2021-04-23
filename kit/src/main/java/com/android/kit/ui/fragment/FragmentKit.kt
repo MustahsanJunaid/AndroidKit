@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewParent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.ViewDataBinding
@@ -28,14 +29,14 @@ abstract class FragmentKit<Binding : ViewDataBinding> : Fragment() {
         ActivityResultContracts.RequestMultiplePermissions()
     )
 
-    abstract fun onCreateBinding(): Binding
+    abstract fun onCreateBinding(inflater: LayoutInflater, container: ViewGroup?): Binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = onCreateBinding()
+        _binding = onCreateBinding(layoutInflater, container)
         return _binding!!.root
     }
 
@@ -59,9 +60,9 @@ abstract class FragmentKit<Binding : ViewDataBinding> : Fragment() {
         contractForMultiplePermissions.launch(permissions) { result(it) }
     }
 
-    fun replaceFragment(containerId: Int, fragment: Fragment) {
+    fun replaceFragment(containerId: Int, fragment: Fragment, allowStateLoss: Boolean = false) {
         activity?.let {
-            childFragmentManager.commit(allowStateLoss = false) {
+            childFragmentManager.commit(allowStateLoss) {
                 replace(containerId, fragment)
             }
         }

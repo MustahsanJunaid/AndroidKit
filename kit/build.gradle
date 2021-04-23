@@ -17,7 +17,7 @@ ext {
     siteUrl = 'https://github.com/MustahsanJunaid/AndroidKit'
     gitUrl = 'https://github.com/MustahsanJunaid/AndroidKit.git'
 
-    libraryVersion = '1.2.6'
+    libraryVersion = '1.3.0'
 
     developerId = 'must7hsan'
     developerName = 'Mustahsan Junaid Basit'
@@ -34,7 +34,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

@@ -20,4 +20,16 @@
     <dimen name="radius_medium">8dp</dimen>
     <dimen name="radius_large">12dp</dimen>
     <dimen name="radius_large_x">16dp</dimen>
+
+    <dimen name="text_size_h1">28sp</dimen>
+    <dimen name="text_size_h2">22sp</dimen>
+    <dimen name="text_size_h3">20sp</dimen>
+    <dimen name="text_size_h4">17sp</dimen>
+    <dimen name="text_size_body1">17sp</dimen>
+    <dimen name="text_size_body2">16sp</dimen>
+    <dimen name="text_size_body3">14sp</dimen>
+    <dimen name="text_size_subhead1">15sp</dimen>
+    <dimen name="text_size_subhead2">16sp</dimen>
+    <dimen name="text_size_caption1">12sp</dimen>
+    <dimen name="text_size_caption2">11sp</dimen>
 </resources>
