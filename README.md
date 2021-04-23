@@ -1,14 +1,14 @@
 # AndroidKit
 One Module for all basic need of an android developer
 
-Latest AndroidKit Version [ ![Download](https://api.bintray.com/packages/must7hsan/AndroidKit/com.mustahsan/images/download.svg) ](https://bintray.com/must7hsan/AndroidKit/com.mustahsan/_latestVersion)
+Latest AndroidKit Version [![](https://jitpack.io/v/MustahsanJunaid/AndroidKit.svg)](https://jitpack.io/#MustahsanJunaid/AndroidKit)
 
 ### Usage
 
 For integration, at this point latest version looks like
 
 ```groovy
-implementation 'com.mustahsan:androidkit:x.y'
+implementation 'com.github.MustahsanJunaid:AndroidKit:x.y.z'
 ```
 
 [Android MVVM](https://github.com/MustahsanJunaid/AndroidMVVM)
