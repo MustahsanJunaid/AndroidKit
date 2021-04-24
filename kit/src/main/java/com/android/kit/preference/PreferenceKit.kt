@@ -62,11 +62,9 @@ object PreferenceKit {
         }
     }
 
-
     fun contains(key: String): Boolean {
         return preference.contains(key)
     }
-
 
     fun getString(key: String): String? {
         return preference.getString(key, null)
